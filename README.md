@@ -1,2 +1,2 @@
 # Userbot-Script
-Use it.
+I've created for you some scripts for your Userbot. Enjoy!

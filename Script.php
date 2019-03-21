@@ -1,60 +1,29 @@
 <?php
-
-include '_config.php';
-
-/*
-QUESTO FILE SERVE PER AVERE SEPARATI I COMANDI DELL'USERBOT
-DAI FILE BASE DI FUNZIONAMENTO DELLO STESSO
-*/
-
-if (isset($userID) && in_array($userID, $lista_admin)) {
-    $isadmin = true;
-} else {
-    $isadmin = false;
-}
-
-if (isset($msg) && isset($chatID)) {
-    if ($isadmin) {
-        if (stripos($msg, '!say ') === 0) {
-            sm($chatID, explode(' ', $msg, 2)[1]);
-        }
-
-
-        if (stripos($msg, '!join ') === 0) {
-            joinChat(explode(' ', $msg, 2)[1], $chatID);
-        }
-        
-
-
-        if ($msg == '!leave' && stripos($chatID, '-100') === 0) {
-            abbandonaChat($chatID);
-        }
-    }
     if ($msg == 'test') {
-        sm($chatID, "test cf");
+        sm($chatID, "test ok");
     }
 
     if ($msg == '?dev') {
-        sm($chatID, "This userbot is powered by @Cleptomania");
+        sm($chatID, "This userbot is powered by YOUR NAME");
     }
     
     if ($msg == '?ver') {
-        sm($chatID, "Versione Altervista: <code>$version</code>\nVersione Userbot: <code>1.1</code>");
+        sm($chatID, "USERBOT VERSION, LIKE: VERSION 1.0");
     }
 }
 
-if(stripos($msg, '.sm') === 0 and $userID == 687557217){
+if(stripos($msg, '.sm') === 0 and $userID == YOUR ID){
     $exp = explode(" ", $msg, 3);
     sm($exp[1], $exp[2]);
   }
 
-if(stripos($msg, '!auth') === 0 and $userID == 687557217){
-sm($chatID, '<code>Verifica del tuo account...</code>');
+if(stripos($msg, '!auth') === 0 and $userID == YOUR ID){
+sm($chatID, 'MESSAGE');
             sleep(0.6);
-            sm($chatID, '@Cleptomania è un supporter, di lui ti puoi fidare!');
+            sm($chatID, 'MESSAGE');
         }
         
-if($msg == 'mioid'){
+if($msg == 'myid'){
 sm($chatID, "Ecco il tuo ID: <code>$userID</code>");
 }
 
@@ -62,15 +31,15 @@ if($msg == 'chatid'){
 sm($chatID, "Ecco l'ID del gruppo: <code>$chatID</code>");
 }
 
-if(stripos($msg, '<riavvia') === 0 and $userID == 687557217){
+if(stripos($msg, '<riavvia') === 0 and $userID == YOUR ID){
 sm($chatID, "<code>⚙RIAVVIO...</code>\n ╠<i>✅Riavvio Completato!</i>\n ╚<i>✅Nessun Errore Trovato!</i>");
 }
 
-if($msg == "del" and isset($update['update']['message']["reply_to_msg_id"]) and $userID == 687557217){
+if($msg == "del" and isset($update['update']['message']["reply_to_msg_id"]) and $userID == YOUR ID){
 $MadelineProto->channels->deleteMessages(['channel' => $chatID, 'id' => [$update['update']['message']["reply_to_msg_id"], $update['update']['message']["id"]]]);
 }
 
-if($msg == "delall" and isset($update['update']['message']["reply_to_msg_id"]) and $userID == 687557217){
+if($msg == "delall" and isset($update['update']['message']["reply_to_msg_id"]) and $userID == YOUR ID){
       $messages_Messages = $MadelineProto->channels->getMessages(['channel' => $chatID, 'id' => [$update['update']['message']["reply_to_msg_id"]], ]);
       $suserID = $messages_Messages['messages'][0]['from_id'];
       $MadelineProto->channels->deleteUserHistory(['channel' => $chatID, 'user_id' => $suserID]);
@@ -80,7 +49,7 @@ if($msg == "delall" and isset($update['update']['message']["reply_to_msg_id"]) a
 
 
 // es: flood 100 Storm by @cancr
-if (0 === strpos($msg, 'flood ') and $userID == 687557217)
+if (0 === strpos($msg, 'flood ') and $userID == YOUR ID)
 	{
 	try
 		{
@@ -101,14 +70,14 @@ if (0 === strpos($msg, 'flood ') and $userID == 687557217)
 
 
 //cambia il nome   
-if (0 === strpos($msg, 'nome ') and $userID == 687557217)
+if (0 === strpos($msg, 'nome ') and $userID == YOUR ID)
 	{
 	$nome = str_replace('nome ', '', $msg);
 	$MadelineProto->account->updateProfile(['first_name' => $nome]);
 	$MadelineProto->messages->sendMessage(['peer' => $chatID, 'message' => 'Ho cambiato nome in ' . $nome]);
 	}
 //cambia bio    
-if (0 === strpos($msg, 'bio ') and $userID == 687557217)
+if (0 === strpos($msg, 'bio ') and $userID == YOUR ID)
 	{
 	$bio = str_replace('bio ', '', $msg);
 	$MadelineProto->account->updateProfile(['about' => $bio]);
@@ -116,7 +85,7 @@ if (0 === strpos($msg, 'bio ') and $userID == 687557217)
 	}
     
 //cambia username
-if (0 === strpos($msg, 'username ') and $userID == 687557217)
+if (0 === strpos($msg, 'username ') and $userID == YOUR ID)
 	{
 	$tag = str_replace('username ', '', $msg);
 	$MadelineProto->account->updateUsername(['username' => $tag]);
@@ -126,41 +95,21 @@ if (0 === strpos($msg, 'username ') and $userID == 687557217)
     
 
 //ubot limitato?
-if(0 === strpos($msg, 'check') and $userID == 687557217)
+if(0 === strpos($msg, 'check') and $userID == YOUR ID)
 	{
 	sm(178220800, "/start");
 	}
 $idchat = "-1001436272141"; //mettere l'id della chat dove il bot mandera il resoconto
-if (stripos($msg, "Good news") === 0 and $userID == 178220800)
+if (stripos($msg, "Good news") === 0 and $userID == 178220800) //don't change this id
 	{
 	sm($idchat, "Non sono limitato.");
 	}
-if (stripos($msg, "Dear") === 0 and $userID == 178220800)
+if (stripos($msg, "Dear") === 0 and $userID == 178220800) //don't change this id
 	{
 	sm($idchat, "Sono limitato.");
-	}
-    
-    
-$host = "localhost";
-$user = "fratest";
-$pass = "fompebimmo14";
-$dbname = "my_fratest";
-
-$my = new mysqli($host, $user, $pass,$dbname);
-if ($my->connect_errno) {
-	echo "Errore in connessione al DBMS: ".$my->error;
-        exit();
-} 
-
-$nome = $update['message']['from']['first_name'];
-$messageid = $update['message']['message_id'];
-$ureply = $update['message']['reply_to_message']['from']['username'];
-$id = $update['message']['reply_to_message']['from']['id'];
-$msgid = $update['message']['reply_to_message']['message_id'];
-$username = $update['message']['from']['username'];
-
+}
 //ban
-if(0 === strpos($msg, 'ban') and $userID == 687557217)
+if(0 === strpos($msg, 'ban') and $userID == YOUR ID)
 	{
 	try
 		{
@@ -176,4 +125,4 @@ if(0 === strpos($msg, 'ban') and $userID == 687557217)
 		$errore = $e - getMessage();
 		$MadelineProto->messages->sendMessage(['peer' => $chatID, 'message' => $errore]);
 		}
-	}
+	}
